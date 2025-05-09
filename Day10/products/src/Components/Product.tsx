@@ -13,8 +13,7 @@ export default function Product(args:Props){
     // });
     const navigate = useNavigate();
     const handleDetails =()=>{
-       navigate('/product/'+args.product.id)
-       // navigate(-1)
+        navigate('/product/'+args.product.id)
     }
     return(
         <section>
