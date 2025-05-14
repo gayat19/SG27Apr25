@@ -2,22 +2,24 @@ import { useState } from "react";
 import { UserModel } from "../Models/UserModel";
 import { userLogin } from "../Services/AuthenticationAPIService";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Misc/AuthContext";
 
 const Login = ()=>{
         const [user,setUser]= useState(new UserModel("emilys","emilyspass"));
+        const {login} = useAuth();
         const navigate = useNavigate();
-        const populateUser=(event:any)=>{
-        const element = event.target;
-            if(element.name=='username')
-            {
-                setUser({...user,username:element.value})
+        // const populateUser=(event:any)=>{
+        // const element = event.target;
+        //     if(element.name=='username')
+        //     {
+        //         setUser({...user,username:element.value})
                
-            }
-            if(element.name=='password')
-            {
-                setUser({...user,password:element.value})
-            }
-        }
+        //     }
+        //     if(element.name=='password')
+        //     {
+        //         setUser({...user,password:element.value})
+        //     }
+        // }
     const handleLogin =()=>{
         event.preventDefault();
          userLogin(user)
@@ -25,7 +27,8 @@ const Login = ()=>{
             if(response.status==200)
             {
                 alert('login success');
-                localStorage.setItem('token',response.data.accessToken)
+                //localStorage.setItem('token',response.data.accessToken)
+                login(response.data.accessToken);
                 navigate('/obs')
             }
          })
