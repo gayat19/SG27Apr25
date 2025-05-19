@@ -23,7 +23,11 @@ export default function Product(args:Props){
             <div className="card-body">
                 <h5 className="card-title">{args.product.title}</h5>
                 <p className="card-text">{args.product.description}</p>
-                <button onClick={handleDetails}  className="btn btn-primary">Buy for </button>
+                <button onClick={handleDetails}  className="btn btn-primary">Buy for {new Intl.NumberFormat("en-US",{
+                    style:"currency",
+                    currency:"YEN"
+                }).format(args.product.price as number)} </button>
+
             </div>
             </div>
         </section>

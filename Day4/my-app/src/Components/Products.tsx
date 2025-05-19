@@ -22,7 +22,9 @@ return(
         <h1>Products</h1>
         {
             products.length>0?
-            products.map((product:ProductModel)=>
+            products.sort((a:ProductModel,b:ProductModel)=>
+                a.title.localeCompare(b.title))
+            .map((product:ProductModel)=>
             <Product key={product.id as any} product={product} />)
             :null
         }

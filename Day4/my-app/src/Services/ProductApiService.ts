@@ -1,4 +1,6 @@
 import axios from "axios";
+import axiosIntercepted from "../Misc/interceptor";
+
 
 import { QueryFunctionContext } from "@tanstack/react-query";
 import { baseURL } from "../environments/environment.dev";
@@ -28,6 +30,10 @@ export const fetchProducts = async()=>{
     return response.data;
 }
 
+export const fetchUserData = async()=>{
+    const response = await axiosIntercepted.get("https://dummyjson.com/auth/me");
+    return response.data;
+}
 type ProductModel = {
     id: number
     title: string
